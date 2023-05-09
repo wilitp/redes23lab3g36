@@ -1,0 +1,31 @@
+file 808 1683654581                                             
+version 3
+run General-0-20230509-14:49:17-5290
+attr configname General
+attr datetime 20230509-14:49:17
+attr datetimef 20230509-144917
+attr experiment General
+attr inifile omnetpp.ini
+attr iterationvars ""
+attr iterationvarsd ""
+attr iterationvarsf ""
+attr measurement ""
+attr network Network
+attr processid 5290
+attr repetition 0
+attr replication #0
+attr resultdir results
+attr runnumber 0
+attr seedset 0
+config network Network
+config sim-time-limit 200s
+config Network.nodeTx.gen.generationInterval exponential(0.001)
+config Network.queue.serviceTime exponential(0.001)
+config Network.nodeTx.gen.packetByteSize 12500
+config Network.queue.bufferSize 200
+config Network.nodeRx.queue.bufferSize 200
+config Network.nodeTx.queue.bufferSize 2000000
+
+vector 0 Network.nodeTx.gen "Packets sent vector" ETV
+0	799 8 0 0 0 0 1 1 1 1 1
+

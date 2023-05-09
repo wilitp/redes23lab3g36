@@ -10,6 +10,7 @@ class Sink : public cSimpleModule {
 private:
     cStdDev delayStats;
     cOutVector delayVector;
+    cOutVector packetReceivedVector;
 public:
     Sink();
     virtual ~Sink();
@@ -31,6 +32,7 @@ void Sink::initialize(){
     // stats and vector names
     delayStats.setName("TotalDelay");
     delayVector.setName("Delay");
+    packetReceivedVector.setName("Packets received");
 }
 
 void Sink::finish(){
@@ -40,6 +42,7 @@ void Sink::finish(){
 }
 
 void Sink::handleMessage(cMessage * msg) {
+    packetReceivedVector.record(packetReceivedVector.getValuesStored() + 1);
     // compute queuing delay
     simtime_t delay = simTime() - msg->getCreationTime();
     // update stats

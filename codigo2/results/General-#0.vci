@@ -1,9 +1,9 @@
-file 808 1683654581                                             
+file 910 1683837444                                             
 version 3
-run General-0-20230509-14:49:17-5290
+run General-0-20230511-17:35:26-15051
 attr configname General
-attr datetime 20230509-14:49:17
-attr datetimef 20230509-144917
+attr datetime 20230511-17:35:26
+attr datetimef 20230511-173526
 attr experiment General
 attr inifile omnetpp.ini
 attr iterationvars ""
@@ -11,7 +11,7 @@ attr iterationvarsd ""
 attr iterationvarsf ""
 attr measurement ""
 attr network Network
-attr processid 5290
+attr processid 15051
 attr repetition 0
 attr replication #0
 attr resultdir results
@@ -27,5 +27,7 @@ config Network.nodeRx.queue.bufferSize 200
 config Network.nodeTx.queue.bufferSize 2000000
 
 vector 0 Network.nodeTx.gen "Packets sent vector" ETV
-0	799 8 0 0 0 0 1 1 1 1 1
+vector 1 Network.nodeTx.queue "" ETV
+0	838 29 0 1 0 0.000795874505 2 1 2 3 5
+1	867 42 2 3 0.000795874505 0.000795874505 2 1 2 3 5
 

@@ -65,8 +65,8 @@ module NodeTx
         }
     connections:
         gen.out --> queue.toApp;
-        queue.toOut --> out;
-        in --> queue.toOut;
+        queue.toOut$o --> out;
+        in --> queue.toOut$i;
 }
 
 
@@ -83,13 +83,13 @@ module NodeRx
             parameters:
                 @display("p=75,50");
         }
-        queue: TransportTx {
+        queue: TransportRx {
             parameters:
                 @display("p=75,190");
         }
     connections:
-        in --> queue.toOut;
-        queue.toOut --> out;
+        in --> queue.toOut$i;
+        queue.toOut$o --> out;
         //case study 1:
         queue.toApp --> { datarate = 0.5Mbps; } --> sink.in;
         // case study 2:
@@ -107,7 +107,7 @@ network Network
             @display("p=130,30");
         }
         queue2: Queue {
-            @display("p=130,60");
+            @display("p=130,90");
         }
         nodeRx: NodeRx {
             @display("p=230,30");

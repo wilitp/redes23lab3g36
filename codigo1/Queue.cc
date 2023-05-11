@@ -34,6 +34,8 @@ Queue::~Queue() {
 
 void Queue::initialize() {
     buffer.setName("buffer");
+    bufferSizeVector.setName("Buffer Size");
+    packetDropVector.setName("Packet Drop");
     endServiceEvent = new cMessage("endService");
 }
 

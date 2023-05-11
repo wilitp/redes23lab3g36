@@ -42,7 +42,7 @@ void Sink::finish(){
 }
 
 void Sink::handleMessage(cMessage * msg) {
-    packetReceivedVector.record(packetReceivedVector.getValuesStored() + 1);
+    packetReceivedVector.record(1);
     // compute queuing delay
     simtime_t delay = simTime() - msg->getCreationTime();
     // update stats

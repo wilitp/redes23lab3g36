@@ -35,8 +35,7 @@ void Generator::initialize() {
     // create the send packet
     sendMsgEvent = new cMessage("sendEvent");
     // schedule the first event at random time
-    packetSentVector.setName("Packets sent vector");
-    packetSentVector.record(packetSentVector.getValuesStored() + 1);
+    packetSentVector.setName("Packets Generated");
     scheduleAt(par("generationInterval"), sendMsgEvent);
 }
 
@@ -51,7 +50,7 @@ void Generator::handleMessage(cMessage *msg) {
     // send to the output
     send(pkt, "out");
 
-    packetSentVector.record(packetSentVector.getValuesStored() + 1);
+    packetSentVector.record(1);
 
     // compute the new departure time
     simtime_t departureTime = simTime() + par("generationInterval");

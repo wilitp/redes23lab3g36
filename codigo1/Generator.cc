@@ -50,7 +50,7 @@ void Generator::handleMessage(cMessage *msg) {
     // send to the output
     send(pkt, "out");
 
-    packetSentVector.record(1);
+    packetSentVector.record(packetSentVector.getValuesStored() + 1);
 
     // compute the new departure time
     simtime_t departureTime = simTime() + par("generationInterval");

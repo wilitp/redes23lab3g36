@@ -10,10 +10,12 @@ class TransportTx: public cSimpleModule {
 private:
     cQueue buffer;
     cMessage *endServiceEvent;
+    cMessage *extraSpaceEvent;
     simtime_t serviceTime;
     cOutVector bufferSizeVector;
     cOutVector packetDropVector;
     cOutVector out_vector;
+    long long receiver_buff_cap;
 public:
     TransportTx();
     virtual ~TransportTx();
@@ -27,16 +29,19 @@ Define_Module(TransportTx);
 
 TransportTx::TransportTx() {
     endServiceEvent = NULL;
+    extraSpaceEvent = NULL;
 }
 
 TransportTx::~TransportTx() {
     cancelAndDelete(endServiceEvent);
+    cancelAndDelete(extraSpaceEvent);
 }
 
 void TransportTx::initialize() {
     buffer.setName("buffer");
     endServiceEvent = new cMessage("endService");
-    
+    extraSpaceEvent = new cMessage("extraSpaceEvent");
+    receiver_buff_cap = 10;
 }
 
 void TransportTx::finish() {
@@ -44,14 +49,24 @@ void TransportTx::finish() {
 
 void TransportTx::handleMessage(cMessage *msg) {
 
+    if(msg == extraSpaceEvent){ //receiver has space in its buffer
+        receiver_buff_cap++;
+        if (!endServiceEvent->isScheduled()) {
+            // start the service
+            scheduleAt(simTime(), endServiceEvent);
+        }
+        return;
+    }
+
     // if msg is signaling an endServiceEvent
     if (msg == endServiceEvent) {
         // if packet in buffer, send next one
-        if (!buffer.isEmpty()) {
+        if (!buffer.isEmpty() && receiver_buff_cap > 0) {
             // dequeue packet
             cPacket *pkt = (cPacket*) buffer.pop();
             // send packet
-            send(pkt, "out");
+            send(pkt, "toOut$o");
+            receiver_buff_cap--;
             // start new service
             serviceTime = pkt->getDuration();
             scheduleAt(simTime() + serviceTime, endServiceEvent);

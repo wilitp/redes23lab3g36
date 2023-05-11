@@ -10,6 +10,7 @@ class TransportRx: public cSimpleModule {
 private:
     cQueue buffer;
     cMessage *endServiceEvent;
+    cMessage *extraSpaceEvent;
     simtime_t serviceTime;
     cOutVector bufferSizeVector;
     cOutVector packetDropVector;
@@ -27,15 +28,18 @@ Define_Module(TransportRx);
 
 TransportRx::TransportRx() {
     endServiceEvent = NULL;
+    extraSpaceEvent = NULL;
 }
 
 TransportRx::~TransportRx() {
     cancelAndDelete(endServiceEvent);
+    cancelAndDelete(extraSpaceEvent);
 }
 
 void TransportRx::initialize() {
     buffer.setName("buffer");
     endServiceEvent = new cMessage("endService");
+    //send(extraSpaceEvent, "toOut$o");
     
 }
 
@@ -51,7 +55,10 @@ void TransportRx::handleMessage(cMessage *msg) {
             // dequeue packet
             cPacket *pkt = (cPacket*) buffer.pop();
             // send packet
-            send(pkt, "out");
+            send(pkt, "toApp");
+            //tell the sender we have space in the buffer
+            extraSpaceEvent = new cMessage("extraSpaceEvent");
+            send(extraSpaceEvent, "toOut$o");
             // start new service
             serviceTime = pkt->getDuration();
             scheduleAt(simTime() + serviceTime, endServiceEvent);

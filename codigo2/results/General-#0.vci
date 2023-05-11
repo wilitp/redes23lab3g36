@@ -1,9 +1,9 @@
-file 910 1683837444                                             
+file 112885 1683848360                                          
 version 3
-run General-0-20230511-17:35:26-15051
+run General-0-20230511-20:38:30-18835
 attr configname General
-attr datetime 20230511-17:35:26
-attr datetimef 20230511-173526
+attr datetime 20230511-20:38:30
+attr datetimef 20230511-203830
 attr experiment General
 attr inifile omnetpp.ini
 attr iterationvars ""
@@ -11,7 +11,7 @@ attr iterationvarsd ""
 attr iterationvarsf ""
 attr measurement ""
 attr network Network
-attr processid 15051
+attr processid 18835
 attr repetition 0
 attr replication #0
 attr resultdir results
@@ -28,6 +28,16 @@ config Network.nodeTx.queue.bufferSize 2000000
 
 vector 0 Network.nodeTx.gen "Packets sent vector" ETV
 vector 1 Network.nodeTx.queue "" ETV
-0	838 29 0 1 0 0.000795874505 2 1 2 3 5
-1	867 42 2 3 0.000795874505 0.000795874505 2 1 2 3 5
+vector 2 Network.queue1 "" ETV
+vector 3 Network.nodeRx.queue "" ETV
+vector 4 Network.queue2 "" ETV
+vector 5 Network.nodeRx.sink "Packets received" ETV
+vector 6 Network.nodeRx.sink Delay ETV
+0	1028 36532 0 4744 0 1.427251572249 1414 1 1414 1000405 943381915
+1	37560 74331 2 4746 0.000795874505 1.427251572249 2833 1 2823 3994973 7514283961
+2	111891 237 303 3032 0.100895874505 1.000895874505 10 1 2 14 22
+3	112128 239 677 4376 0.225995874505 1.350995874505 10 1 4 22 58
+4	112367 167 679 4711 0.226095874505 1.426095874505 7 1 1 7 7
+5	112534 144 1274 4709 0.425995874505 1.425995874505 6 1 6 21 91
+6	112678 206 1274 4709 0.425995874505 1.425995874505 6 0.4252 1.423045508854 5.545093896932 5.8212352195351
 

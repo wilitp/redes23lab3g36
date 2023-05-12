@@ -114,12 +114,12 @@ network Network
         }
     connections:
         nodeTx.out --> { datarate = 1Mbps; delay = 100us; } --> queue1.in;
-        queue2.out --> { datarate = 1Mbps; delay = 100us; } --> nodeTx.in;
+        queue2.out --> { datarate = 1Mbps; delay = 1us; } --> nodeTx.in;
 
         
         //case study 1:
         queue1.out --> { datarate = 0.8Mbps; delay = 100us; } --> nodeRx.in;
-        nodeRx.out --> { datarate = 0.8Mbps; delay = 100us; } --> queue2.in;
+        nodeRx.out --> { datarate = 0.8Mbps; delay = 1us; } --> queue2.in;
         //case study 2:
         //queue.out --> { datarate = 0.5Mbps; delay = 100us; } --> nodeRx.in;
 }

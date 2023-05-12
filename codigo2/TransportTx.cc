@@ -49,8 +49,9 @@ void TransportTx::finish() {
 
 void TransportTx::handleMessage(cMessage *msg) {
 
-    if(msg == extraSpaceEvent){ //receiver has space in its buffer
+    if(strcmp("extraSpaceEvent", msg->getName()) == 0){ //receiver has space in its buffer
         receiver_buff_cap++;
+        //this->bubble("extra cap event arrived");
         if (!endServiceEvent->isScheduled()) {
             // start the service
             scheduleAt(simTime(), endServiceEvent);

@@ -13,7 +13,6 @@ private:
     simtime_t serviceTime;
     cOutVector bufferSizeVector;
     cOutVector packetDropVector;
-    cOutVector out_vector;
 public:
     Queue();
     virtual ~Queue();
@@ -35,8 +34,9 @@ Queue::~Queue() {
 
 void Queue::initialize() {
     buffer.setName("buffer");
+    bufferSizeVector.setName("Buffer Size");
+    packetDropVector.setName("Packet Drop");
     endServiceEvent = new cMessage("endService");
-    
 }
 
 void Queue::finish() {

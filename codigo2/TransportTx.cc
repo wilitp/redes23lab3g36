@@ -39,6 +39,9 @@ TransportTx::~TransportTx() {
 
 void TransportTx::initialize() {
     buffer.setName("buffer");
+    bufferSizeVector.setName("Buffer Size");
+    packetDropVector.setName("Packet Drop");
+    out_vector.setName("Out");
     endServiceEvent = new cMessage("endService");
     extraSpaceEvent = new cMessage("extraSpaceEvent");
     receiver_buff_cap = 10;

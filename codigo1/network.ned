@@ -87,7 +87,7 @@ network Network
         nodeTx.out --> { datarate = 1Mbps; delay = 100us; } --> queue.in;
         
         //case study 1:
-        queue.out --> { datarate = 0.8Mbps; delay = 100us; } --> nodeRx.in;
+        queue.out --> { datarate = 1Mbps; delay = 100us; } --> nodeRx.in;
         //case study 2:
         //queue.out --> { datarate = 0.5Mbps; delay = 100us; } --> nodeRx.in;
 }

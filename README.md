@@ -21,10 +21,11 @@ Vamos a usar el siguiente modelo:
 
 ![Estructura](/images/estructura_part1.png)
 
+
 Nuestra red consta de un `generador` (nodeTx) y un `receptor` (nodeRx), el cual están conectados através de un nodo intermedio `queue`. 
 
 ### NodeTx 
-Contiene dos componentes, un generador y una queue con un buffer interno. Este se encarga de generar paquetes en un cierto tiempo predefinido e irlos mandando a través de la queue. Los paquetes serán almacenados en un buffer y cuando esté lleno los mismos serán descartados.
+Contiene dos componentes, un generador y una queue con un buffer interno. Este se encarga de generar paquetes en cierto tiempo predefinido con media λ con distribución exponencial e irlos mandando a través de la queue. Los paquetes serán almacenados en un buffer y cuando esté lleno los mismos serán descartados 
 
 ### NodeRx
 Contiene también una queue pero con un receptor. Su función es la de ir recibiendo paquetes por la queue e ir "consumiendolos". Los paquetes serán almacenados en un buffer y cuando esté lleno los mismos serán descartados.
@@ -47,7 +48,7 @@ En este trabajo vamos a estudiar dos casos sobre el mismo modelo, en los que var
 ## Caso 1
 
 
-| 0.1 | 0.2 | 0.3 |
+| λ = 0.1 |λ = 0.2 |λ = 0.3 |
 |----------|----------|----------|
 | ![a](/codigo1/graficas/buffers_caso1_0.1.png)    | ![a](/codigo1/graficas/buffers_caso1_0.2.png)   | ![a](/codigo1/graficas/buffers_caso1_0.3.png)   |
 | ![a](/codigo1/graficas/env_rcv_caso1_0.1.png)    | ![a](/codigo1/graficas/env_rcv_caso1_0.2.png)   | ![a](/codigo1/graficas/env_rcv_caso1_0.3.png)   |
@@ -66,7 +67,7 @@ Se puede ver en la figura de ocupación de buffers del caso 0.1 que hay un probl
 
 ## Caso 2
 
-| 0.1 | 0.2 | 0.3 |
+| λ = 0.1 |λ = 0.2 |λ = 0.3 |
 |----------|----------|----------|
 | ![a](/codigo1/graficas/buffer_caso2_0.1.png)    | ![a](/codigo1/graficas/buffer_caso2_0.2.png)   | ![a](/codigo1/graficas/buffer_caso2_0.3.png)   |
 | ![a](/codigo1/graficas/env_rcv_caso1_0.1.png)    | ![a](/codigo1/graficas/env_rcv_caso1_0.2.png)   | ![a](/codigo1/graficas/env_rcv_caso1_0.3.png)   |
@@ -91,7 +92,7 @@ Al repetir las pruebas usando el algoritmo propuesto, obtuvimos los siguientes r
 ## Caso 1
 
 
-| 0.1 | 0.2 | 0.3 |
+| λ = 0.1 |λ = 0.2 |λ = 0.3 |
 |----------|----------|----------|
 | ![a](/codigo2/graficas/buffers_caso1_0.1.png)    | ![a](/codigo2/graficas/buffers_caso1_0.2.png)   | ![a](/codigo2/graficas/buffers_caso1_0.3.png)   |
 | ![a](/codigo2/graficas/env_rcv_caso1_0.1.png)    | ![a](/codigo2/graficas/env_rcv_caso1_0.2.png)   | ![a](/codigo2/graficas/env_rcv_caso1_0.3.png)   |
@@ -108,7 +109,7 @@ El aprovechamiento mejoró ampliamente; del 50% al 98% en el caso de mayor exige
 
 ## Caso 2
 
-| 0.1 | 0.2 | 0.3 |
+| λ = 0.1 |λ = 0.2 |λ = 0.3 |
 |----------|----------|----------|
 | ![a](/codigo2/graficas/buffers_caso2_0.1.png)    | ![a](/codigo2/graficas/buffers_caso2_0.2.png)   | ![a](/codigo2/graficas/buffers_caso2_0.3.png)   |
 | ![a](/codigo2/graficas/env_rcv_caso1_0.1.png)    | ![a](/codigo2/graficas/env_rcv_caso1_0.2.png)   | ![a](/codigo2/graficas/env_rcv_caso1_0.3.png)   |

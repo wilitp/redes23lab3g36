@@ -43,7 +43,6 @@ void Queue::finish() {
 }
 
 void Queue::handleMessage(cMessage *msg) {
-
     // if msg is signaling an endServiceEvent
     if (msg == endServiceEvent) {
         // if packet in buffer, send next one

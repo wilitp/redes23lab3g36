@@ -50,13 +50,8 @@ void Generator::handleMessage(cMessage *msg) {
     pkt->setByteLength(par("packetByteSize"));
     // send to the output
     send(pkt, "out");
-    cPacket *pkt2 = new cPacket("packet");
-    pkt2->setByteLength(par("packetByteSize"));
-    // send to the output
-    send(pkt2, "out");
 
     packetSentVector.record(packetSentVector.getValuesStored() + 1);
-
     // compute the new departure time
     simtime_t departureTime = simTime() + par("generationInterval");
     // schedule the new packet generation

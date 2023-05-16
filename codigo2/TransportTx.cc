@@ -41,7 +41,7 @@ void TransportTx::initialize() {
     buffer.setName("buffer");
     endServiceEvent = new cMessage("endService");
     extraSpaceEvent = new cMessage("extraSpaceEvent");
-    receiver_buff_cap = 10;
+    receiver_buff_cap = 200;
 }
 
 void TransportTx::finish() {

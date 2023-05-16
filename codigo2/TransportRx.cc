@@ -39,8 +39,8 @@ TransportRx::~TransportRx() {
 void TransportRx::initialize() {
     buffer.setName("buffer");
     endServiceEvent = new cMessage("endService");
-    //send(extraSpaceEvent, "toOut$o");
-    
+    extraSpaceEvent = new cMessage("extraSpaceEvent");
+    send(extraSpaceEvent, "toOut$o");
 }
 
 void TransportRx::finish() {

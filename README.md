@@ -76,9 +76,13 @@ Al igual que en el caso 1, tenemos un problema que se hace más aparente cuando 
 
 El resto de las gráficas es muy similar(si no idéntico) debido a que ambos casos producen los mismos efectos sobre el rendimiento.
 
-## Métodos
+## Método propuesto
 
 Proponemos un algoritmo simple para mitigar el efecto de los cuellos de botella en ambos casos: que el receptor envíe feedback para que el emisor pueda decidir si enviar o no un paquete más. 
+
+La idea del protocolo es asumir que existe una capacidad inicial del recepto, enviar esa cantidad de paquetes y luego casa vez que el receptor consuma paqutes  se envia un mensage avisando que hay lugar en el buffer receptor para un paquete mas.
+
+Una potencial ventaja de enviar paquetes de feedback tan simples es que se reduce la probabilidad de que se corrompan los mensajes.
 
 ## Resultados
 
@@ -93,30 +97,49 @@ Al repetir las pruebas usando el algoritmo propuesto, obtuvimos los siguientes r
 | ![a](/codigo2/graficas/env_rcv_caso1_0.1.png)    | ![a](/codigo2/graficas/env_rcv_caso1_0.2.png)   | ![a](/codigo2/graficas/env_rcv_caso1_0.3.png)   |
 | ![a](/codigo2/graficas/retraso_caso1_0.1.png)    | ![a](/codigo2/graficas/retraso_caso1_0.2.png)   | ![a](/codigo2/graficas/retraso_caso1_0.3.png)   |
 
-**Nx es el buffer del nodo queue1**
-
-Se puede ver en la figura de ocupación de buffers del caso 0.1 que hay un problema de saturación en el nodo `queue1` y que a partir de este se reduce la carga útil. En los otros casos, no es tan aparente este problema ya que la red tiene capacidad suficiente para aprovechar los paquetes enviados.
-### Carga Util vs Ofrecida
-
-![Carga Util](/codigo2/graficas/carga.png)
+Se puede ver que en ningún caso perdimos paquetes(nunca se llenó ningún buffer). En cuanto a performance de la red, obtuvimos una velocidad de transferencia similar. Sin embargo, al hacer mejor uso del buffer del emisor, cargamos la red de forma más eficiente. Esto se puede observar en la figura de aprovechamiento.
 
 ### Aprovechamiento vs Intervalos de generación
 
-![Carga Util](/codigo2/graficas/aprovechamiento.png)
+![Carga Util](/codigo2/graficas/aprovechamiento1.png)
+
+El aprovechamiento mejoró ampliamente; del 50% al 98% en el caso de mayor exigencia a la red(intervalo de 0.1). En los otros casos la mejora no es aparente.
+
 
 ## Caso 2
 
 | 0.1 | 0.2 | 0.3 |
 |----------|----------|----------|
-| ![a](/codigo2/graficas/buffer_caso2_0.1.png)    | ![a](/codigo2/graficas/buffer_caso2_0.2.png)   | ![a](/codigo2/graficas/buffer_caso2_0.3.png)   |
+| ![a](/codigo2/graficas/buffers_caso2_0.1.png)    | ![a](/codigo2/graficas/buffers_caso2_0.2.png)   | ![a](/codigo2/graficas/buffers_caso2_0.3.png)   |
 | ![a](/codigo2/graficas/env_rcv_caso1_0.1.png)    | ![a](/codigo2/graficas/env_rcv_caso1_0.2.png)   | ![a](/codigo2/graficas/env_rcv_caso1_0.3.png)   |
 | ![a](/codigo2/graficas/retraso_caso1_0.1.png)    | ![a](/codigo2/graficas/retraso_caso1_0.2.png)   | ![a](/codigo2/graficas/retraso_caso1_0.3.png)   |
+
+En este caso tampoco perdimos paquetes, aunque los resultados no fueron tan favorecedores como en el caso 1. Es decir, nuestro algoritmo funcionó mejor contra problemas de control de flujo que para control de congestión. Esto podemos verlo más claramente en la siguiente figura.
+
+### Aprovechamiento vs Intervalos de generación
+
+![Carga Util](/codigo2/graficas/aprovechamiento2.png)
+
+El aprovechamiento mejoró, pero no en la misma medida que en el caso 1.
 
 
 ## Discusión
 
-Puntos posibles de mejora, por ejemplo "Se podría resolver con mejor performance en casos donde no hay congestión?"
+### Overhead
+Nuestro algoritmo añade overhead en forma de espera desde el lado del transmisor, esto se ve reflejado en los gráficos de delay. En los casos de intervalos de transmisión 0.2 y 0.3 vemos que nuestro algoritmo solo sirvió para disminuir la velocidad de transferencia. 
+
+### Dealock
+
+Si llegaramos a perder paquetes de feedback, nuestro emisor no enviaría más paquetes y la transmisión nunca terminaría. Quizá podríamos mejorar esta situación con el uso de termporizadores. 
+
+### Optimización del feedback
+Quizá podríamos enviar menos paquetes de feedback que tengan más información sobre la capacidad actual del receptor.
 
 ## Referencias
 
-Citar videos del pelado y capaz algún artículo / paper que leamos sobre el tema que nos haya servido.
+  - Documentación de Omnet++
+  - [Videos en el aula virtual de la materia: Redes y Sistemas Distribuídos 2023](https://famaf-nva.aulavirtual.unc.edu.ar/course/view.php?id=20)
+  - Andrew S. Tanenbaum Redes de computadoras. 5ta edición
+  - Kurose, J. F. and Ross, K. W. Computer Networking - A Top Down Approach. 7th Edition, Pearson, 2017
+
+

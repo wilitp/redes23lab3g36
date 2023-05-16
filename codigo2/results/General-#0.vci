@@ -1,9 +1,9 @@
-file 428949 1683849788                                          
+file 127877 1684206626                                          
 version 3
-run General-0-20230511-21:02:48-19412
+run General-0-20230516-00:10:17-94018
 attr configname General
-attr datetime 20230511-21:02:48
-attr datetimef 20230511-210248
+attr datetime 20230516-00:10:17
+attr datetimef 20230516-001017
 attr experiment General
 attr inifile omnetpp.ini
 attr iterationvars ""
@@ -11,7 +11,7 @@ attr iterationvarsd ""
 attr iterationvarsf ""
 attr measurement ""
 attr network Network
-attr processid 19412
+attr processid 94018
 attr repetition 0
 attr replication #0
 attr resultdir results
@@ -19,25 +19,27 @@ attr runnumber 0
 attr seedset 0
 config network Network
 config sim-time-limit 200s
-config Network.nodeTx.gen.generationInterval exponential(0.001)
-config Network.queue.serviceTime exponential(0.001)
+config Network.nodeTx.gen.generationInterval exponential(0.2)
 config Network.nodeTx.gen.packetByteSize 12500
-config Network.queue.bufferSize 200
+config Network.queue1.serviceTime 0
+config Network.queue2.serviceTime 0
+config Network.queue1.bufferSize 200
+config Network.queue2.bufferSize 200
 config Network.nodeRx.queue.bufferSize 200
-config Network.nodeTx.queue.bufferSize 2000000
+config Network.nodeTx.queue.bufferSize 20000
 
-vector 0 Network.nodeTx.gen "Packets sent vector" ETV
-vector 1 Network.nodeTx.queue "" ETV
-vector 2 Network.queue1 "" ETV
-vector 3 Network.nodeRx.queue "" ETV
-vector 4 Network.queue2 "" ETV
+vector 0 Network.nodeTx.gen "Packets Generated" ETV
+vector 1 Network.nodeTx.queue "Buffer Size" ETV
+vector 2 Network.queue1 "Buffer Size" ETV
+vector 3 Network.nodeRx.queue "Buffer Size" ETV
+vector 4 Network.queue2 "Buffer Size" ETV
 vector 5 Network.nodeRx.sink "Packets received" ETV
 vector 6 Network.nodeRx.sink Delay ETV
-0	1028 140850 0 17625 0 5.325133821063 5212 1 5212 13585078 47208146050
-1	141878 283167 2 17627 0.000795874505 5.325133821063 10422 1 10386 54093913 374492991031
-2	425045 872 303 17629 0.100895874505 5.326097874505 36 1 4 65 155
-3	425917 850 677 17387 0.225995874505 5.251197874505 35 1 9 214 1600
-4	426767 634 679 17321 0.225996874505 5.225996874505 26 1 1 26 26
-5	427401 627 1274 17319 0.425995874505 5.225995874505 25 1 25 325 5525
-6	428028 920 1274 17319 0.425995874505 5.225995874505 25 0.4252 5.212018109406 70.45273571089 250.23570818676
+0	1124 26847 1 8696 0.159174900913 199.308444720664 989 1 989 489555 322943115
+1	27971 26069 2 8697 0.159174900913 199.308444720664 989 1 478 171464 62575132
+2	54040 13336 5 8733 0.259274900913 199.867429731416 534 1 1 534 534
+3	67376 13338 11 8743 0.359374900913 199.967529731416 534 1 9 3639 28681
+4	80714 13150 13 8737 0.359375900913 199.967328731416 525 1 10 615 1275
+5	93864 14063 22 8735 0.559374900913 199.967327731416 524 1 524 137550 48096650
+6	107927 19949 22 8735 0.559374900913 199.967327731416 524 0.4002 95.181711647169 13290.853874705 1182001.7049286
 

@@ -1,0 +1,114 @@
+version 3
+run General-0-20230516-00:10:17-94018
+attr configname General
+attr datetime 20230516-00:10:17
+attr datetimef 20230516-001017
+attr experiment General
+attr inifile omnetpp.ini
+attr iterationvars ""
+attr iterationvarsd ""
+attr iterationvarsf ""
+attr measurement ""
+attr network Network
+attr processid 94018
+attr repetition 0
+attr replication #0
+attr resultdir results
+attr runnumber 0
+attr seedset 0
+config network Network
+config sim-time-limit 200s
+config Network.nodeTx.gen.generationInterval exponential(0.2)
+config Network.nodeTx.gen.packetByteSize 12500
+config Network.queue1.serviceTime 0
+config Network.queue2.serviceTime 0
+config Network.queue1.bufferSize 200
+config Network.queue2.bufferSize 200
+config Network.nodeRx.queue.bufferSize 200
+config Network.nodeTx.queue.bufferSize 20000
+
+par Network.nodeTx.out.channel typename "\"ned.DatarateChannel\""
+par Network.nodeTx.out.channel disabled false
+attr mutable ""
+par Network.nodeTx.out.channel delay 0.0001s
+attr mutable ""
+attr unit s
+par Network.nodeTx.out.channel datarate 1e+06bps
+attr mutable ""
+attr unit bps
+par Network.nodeTx.out.channel ber 0
+attr mutable ""
+par Network.nodeTx.out.channel per 0
+attr mutable ""
+par Network.queue2.out.channel typename "\"ned.DatarateChannel\""
+par Network.queue2.out.channel disabled false
+attr mutable ""
+par Network.queue2.out.channel delay 1e-06s
+attr mutable ""
+attr unit s
+par Network.queue2.out.channel datarate 1e+06bps
+attr mutable ""
+attr unit bps
+par Network.queue2.out.channel ber 0
+attr mutable ""
+par Network.queue2.out.channel per 0
+attr mutable ""
+par Network.queue1.out.channel typename "\"ned.DatarateChannel\""
+par Network.queue1.out.channel disabled false
+attr mutable ""
+par Network.queue1.out.channel delay 0.0001s
+attr mutable ""
+attr unit s
+par Network.queue1.out.channel datarate 1e+06bps
+attr mutable ""
+attr unit bps
+par Network.queue1.out.channel ber 0
+attr mutable ""
+par Network.queue1.out.channel per 0
+attr mutable ""
+par Network.nodeRx.out.channel typename "\"ned.DatarateChannel\""
+par Network.nodeRx.out.channel disabled false
+attr mutable ""
+par Network.nodeRx.out.channel delay 1e-06s
+attr mutable ""
+attr unit s
+par Network.nodeRx.out.channel datarate 1e+06bps
+attr mutable ""
+attr unit bps
+par Network.nodeRx.out.channel ber 0
+attr mutable ""
+par Network.nodeRx.out.channel per 0
+attr mutable ""
+par Network.nodeTx.gen typename "\"Generator\""
+par Network.nodeTx.gen generationInterval exponential(0.2)
+par Network.nodeTx.gen packetByteSize 12500
+par Network.nodeTx.queue typename "\"TransportTx\""
+par Network.nodeTx.queue bufferSize 20000
+par Network.nodeTx typename "\"NodeTx\""
+par Network.queue1 typename "\"Queue\""
+par Network.queue1 serviceTime 0
+par Network.queue1 bufferSize 200
+par Network.queue2 typename "\"Queue\""
+par Network.queue2 serviceTime 0
+par Network.queue2 bufferSize 200
+par Network.nodeRx.queue.toApp.channel typename "\"ned.DatarateChannel\""
+par Network.nodeRx.queue.toApp.channel disabled false
+attr mutable ""
+par Network.nodeRx.queue.toApp.channel delay 0s
+attr mutable ""
+attr unit s
+par Network.nodeRx.queue.toApp.channel datarate 500000bps
+attr mutable ""
+attr unit bps
+par Network.nodeRx.queue.toApp.channel ber 0
+attr mutable ""
+par Network.nodeRx.queue.toApp.channel per 0
+attr mutable ""
+par Network.nodeRx.sink typename "\"Sink\""
+scalar Network.nodeRx.sink "Avg delay" 25.364224951727
+scalar Network.nodeRx.sink "Number of packets" 524
+par Network.nodeRx.queue typename "\"TransportRx\""
+par Network.nodeRx.queue bufferSize 200
+par Network.nodeRx typename "\"NodeRx\""
+par Network typename "\"Network\""
+

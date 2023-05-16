@@ -38,6 +38,9 @@ TransportRx::~TransportRx() {
 
 void TransportRx::initialize() {
     buffer.setName("buffer");
+    bufferSizeVector.setName("Buffer Size");
+    packetDropVector.setName("Packet Drop");
+    out_vector.setName("Out");
     endServiceEvent = new cMessage("endService");
     extraSpaceEvent = new cMessage("extraSpaceEvent");
     send(extraSpaceEvent, "toOut$o");

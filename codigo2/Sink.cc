@@ -11,6 +11,7 @@ private:
     cStdDev delayStats;
     cOutVector delayVector;
     cOutVector packetReceivedVector;
+    int packetReceived;
 public:
     Sink();
     virtual ~Sink();

@@ -35,8 +35,7 @@ void Generator::initialize() {
     // create the send packet
     sendMsgEvent = new cMessage("sendEvent");
     // schedule the first event at random time
-    packetSentVector.setName("Packets sent vector");
-    packetSentVector.record(packetSentVector.getValuesStored() + 1);
+    packetSentVector.setName("Packets Generated");
     scheduleAt(par("generationInterval"), sendMsgEvent);
 }
 

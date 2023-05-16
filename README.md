@@ -78,11 +78,40 @@ El resto de las gráficas es muy similar(si no idéntico) debido a que ambos cas
 
 ## Métodos
 
-Super explicación del ale sobre el algoritmo + idea de por qué lo solucionaría
+Proponemos un algoritmo simple para mitigar el efecto de los cuellos de botella en ambos casos: que el receptor envíe feedback para que el emisor pueda decidir si enviar o no un paquete más. 
 
 ## Resultados
 
-Mostrar nuevos gráficos que muestren que tenemos razón o no xd
+Al repetir las pruebas usando el algoritmo propuesto, obtuvimos los siguientes resultados:
+
+## Caso 1
+
+
+| 0.1 | 0.2 | 0.3 |
+|----------|----------|----------|
+| ![a](/codigo2/graficas/buffers_caso1_0.1.png)    | ![a](/codigo2/graficas/buffers_caso1_0.2.png)   | ![a](/codigo2/graficas/buffers_caso1_0.3.png)   |
+| ![a](/codigo2/graficas/env_rcv_caso1_0.1.png)    | ![a](/codigo2/graficas/env_rcv_caso1_0.2.png)   | ![a](/codigo2/graficas/env_rcv_caso1_0.3.png)   |
+| ![a](/codigo2/graficas/retraso_caso1_0.1.png)    | ![a](/codigo2/graficas/retraso_caso1_0.2.png)   | ![a](/codigo2/graficas/retraso_caso1_0.3.png)   |
+
+**Nx es el buffer del nodo queue1**
+
+Se puede ver en la figura de ocupación de buffers del caso 0.1 que hay un problema de saturación en el nodo `queue1` y que a partir de este se reduce la carga útil. En los otros casos, no es tan aparente este problema ya que la red tiene capacidad suficiente para aprovechar los paquetes enviados.
+### Carga Util vs Ofrecida
+
+![Carga Util](/codigo2/graficas/carga.png)
+
+### Aprovechamiento vs Intervalos de generación
+
+![Carga Util](/codigo2/graficas/aprovechamiento.png)
+
+## Caso 2
+
+| 0.1 | 0.2 | 0.3 |
+|----------|----------|----------|
+| ![a](/codigo2/graficas/buffer_caso2_0.1.png)    | ![a](/codigo2/graficas/buffer_caso2_0.2.png)   | ![a](/codigo2/graficas/buffer_caso2_0.3.png)   |
+| ![a](/codigo2/graficas/env_rcv_caso1_0.1.png)    | ![a](/codigo2/graficas/env_rcv_caso1_0.2.png)   | ![a](/codigo2/graficas/env_rcv_caso1_0.3.png)   |
+| ![a](/codigo2/graficas/retraso_caso1_0.1.png)    | ![a](/codigo2/graficas/retraso_caso1_0.2.png)   | ![a](/codigo2/graficas/retraso_caso1_0.3.png)   |
+
 
 ## Discusión
 
